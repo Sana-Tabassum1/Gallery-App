@@ -20,7 +20,7 @@ class favAdaptor(private val favList:ArrayList<Favorites>):RecyclerView.Adapter<
     }
     inner class MyHolder(private val binding:FavlayoutBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(item:Favorites){
-            Picasso.get().load(item.webformatURL).into(binding.imageView)
+            Picasso.get().load(item.largeImageURL).into(binding.imageView)
 
             binding.deletebtn.setOnClickListener {
                 delBtnListeber?.onDelButtonClick(item)

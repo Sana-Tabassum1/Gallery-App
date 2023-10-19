@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.retrofit.model.Favorites
 import com.example.retrofit.model.Hit
 
-@Database(entities = [Hit::class,Favorites::class], version = 5)
+@Database(entities = [Hit::class,Favorites::class], version = 7)
 abstract class quoteDatabase: RoomDatabase(){
 
     abstract fun quoteDAO():QuoteDAO

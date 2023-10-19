@@ -19,23 +19,24 @@ class favoritesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoritesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_favorites)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_favorites)
 
-        val repository= (application as quoteApplication).retroRepository
-        val mainviewModel: mainviewModel = ViewModelProvider(this,
+        val repository = (application as quoteApplication).retroRepository
+        val mainviewModel: mainviewModel = ViewModelProvider(
+            this,
             mainViewmodelfactory(repository)
         ).get(mainviewModel::class.java)
 
 
-        recyclerView=binding.FavoritesRecycler
-        recyclerView.layoutManager= LinearLayoutManager(this)
+        recyclerView = binding.FavoritesRecycler
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        mainviewModel.getfav().observe(this, Observer {it->
-            val adaptor=favAdaptor(it as ArrayList<Favorites>)
-            recyclerView.adapter=adaptor
+        mainviewModel.getfav().observe(this, Observer { it ->
+            val adaptor = favAdaptor(it as ArrayList<Favorites>)
+            recyclerView.adapter = adaptor
 
 
-            adaptor.setOnDelClickListener(object: favAdaptor.DelButtonClickListener{
+            adaptor.setOnDelClickListener(object : favAdaptor.DelButtonClickListener {
 
                 override fun onDelButtonClick(item: Favorites) {
                     mainviewModel.delfav(item)

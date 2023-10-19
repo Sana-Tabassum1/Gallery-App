@@ -2,12 +2,15 @@ package com.example.retrofit.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 
 @Entity(tableName = "quote")
 data class Hit(
     @PrimaryKey(autoGenerate = true)
+    val favId:Int,
     val quoteId:Int,
+    val imageId:Int,
     val collections: Int,
     val comments: Int,
     val downloads: Int,
@@ -30,4 +33,4 @@ data class Hit(
     val webformatHeight: Int,
     val webformatURL: String,
     val webformatWidth: Int
-)
+):Serializable

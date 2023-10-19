@@ -11,13 +11,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class mainviewModel(private val Repository: retroRepository):ViewModel() {
-      init {
-          viewModelScope.launch(Dispatchers.IO) {
 
-              Repository.getService(1)
-          }
-
-      }
+    val images: LiveData<ListApi> = Repository.images
+//      init {
+//          viewModelScope.launch(Dispatchers.IO) {
+//
+//              Repository.getService(1)
+//          }
+//
+//      }
     fun getfav():LiveData<List<Favorites>>{
         return Repository.getfavorites()
     }
@@ -31,14 +33,17 @@ class mainviewModel(private val Repository: retroRepository):ViewModel() {
     fun insert(hit: Hit){
         val fav = Favorites(
             0,
-            hit.quoteId,
-            hit.comments,
-            hit.downloads,
-            hit.id,
+            hit.favId,
             hit.largeImageURL,
+            hit.id,
             hit.likes,
             hit.views,
-            hit.webformatURL
+            hit.tags,
+            hit.type,
+            hit.downloads,
+            hit.comments,
+            hit.user
+
         )
         viewModelScope.launch(Dispatchers.IO) {
             Repository.favorites(fav)
@@ -47,4 +52,40 @@ class mainviewModel(private val Repository: retroRepository):ViewModel() {
     }
     val picRetro:LiveData<ListApi>
         get() = Repository.picRetro
+
+
+
+    fun loadImagesByCategory(category: String, function: () -> Unit) {
+        viewModelScope.launch {
+            Repository.getImages(1, category)
+        }
+    }
+
+    // Suspend function to check if an image is a favorite
+    suspend fun isFavorite(id: Int): Boolean {
+        return Repository.isFavorite(id)
+    }
+    fun removeFavorite(favorite: Favorites) {
+        viewModelScope.launch {
+            Repository.removeFavorite(favorite)
+        }
+    }
+
+    // Function to fetch favorite image IDs
+    fun fetchFavoriteImageIds() {
+        viewModelScope.launch {
+            Repository.fetchFavoriteImageIds()
+        }
+    }
+    fun toggleFavorite(image: Hit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            Repository.toggleFavorite(image)
+        }
+    }
+
+    fun getFavorites() = Repository.getFavorites()
+    suspend fun getQuote():List<Hit>{
+        return Repository.getQuote()
+    }
+
 }
