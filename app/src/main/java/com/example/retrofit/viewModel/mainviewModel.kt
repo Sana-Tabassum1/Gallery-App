@@ -13,13 +13,7 @@ import kotlinx.coroutines.launch
 class mainviewModel(private val Repository: retroRepository):ViewModel() {
 
     val images: LiveData<ListApi> = Repository.images
-//      init {
-//          viewModelScope.launch(Dispatchers.IO) {
-//
-//              Repository.getService(1)
-//          }
-//
-//      }
+
     fun getfav():LiveData<List<Favorites>>{
         return Repository.getfavorites()
     }

@@ -44,23 +44,7 @@ class retroRepository(
         quoteDatabase.quoteDAO().delfav(item.favoriteId)
     }
 
-    /* suspend fun getService(page:Int){
-         if (networkUtils.isInternetAvailable(applicationContext)){
-             val result =service.getservice(1 )
-             if (result?.body()!=null){
-                 quoteDatabase.quoteDAO().insertQuote(result.body()!!.hits)
-                 picLiveData.postValue(result.body())
-             }
-         }
-         else
-         {
-             val quote=quoteDatabase.quoteDAO().getQuote()
-             val quotelist=ListApi(hits = quote,1,1)
-             picLiveData.postValue(quotelist)
 
-         }
-
-     }*/
     suspend fun getImages(page: Int, category: String) {
         if (networkUtils.isInternetAvailable(applicationContext)) {
             Log.d("MYCODELOG", "internet avaialble")
@@ -100,18 +84,6 @@ class retroRepository(
             } else {
                 // Image is not a favorite, add it
                 val favoriteEntity = Favorites(
-//                    0,  // You can use 0 here as the auto-generated ID
-//                    quoteId = image.quoteId,
-//                    imageId
-//                    largeImageURL = image.largeImageURL,
-//                    id = image.id,
-//                    likes = image.likes,
-//                    views = image.views,
-//                    downloads = image.downloads,
-//                    comments = image.comments,
-//                    user = image.user,
-//                    webformatURL = image.webformatURL
-
                     0,  // You can use 0 here as the auto-generated ID
                     imageId = image.imageId,
                     largeImageURL = image.largeImageURL,
@@ -127,8 +99,7 @@ class retroRepository(
                 quoteDatabase.quoteDAO().addFavorite(favoriteEntity)
             }
 
-            // Update the favorite status LiveData if needed
-            // favoriteStatusLiveData.postValue(!isFavorite)
+
         }
     }
 

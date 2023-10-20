@@ -16,9 +16,7 @@ class Detail_Screen : AppCompatActivity() {
         binding= DataBindingUtil.setContentView(this,R.layout.activity_detail_screen)
 
         val hit=intent.getSerializableExtra("Hit") as Hitwithfav
-//        hit.hit.likes.toString()
-//        binding.tv.text=
-//        binding.detailsImageView.setImageResource(hit.hit.largeImageURL)
+
         Picasso.get().load(hit.hit.largeImageURL).into(binding.detailsImageView)
         binding.downloadsTextView.text="Downloads ${hit.hit.downloads}"
         binding.tagsTextView.text="${hit.hit.tags}"

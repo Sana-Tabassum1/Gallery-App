@@ -16,23 +16,11 @@ class imagrAdaptor(val context: Context,var imageList: List</*Hit*/Hitwithfav>, 
     RecyclerView.Adapter<imagrAdaptor.MyHolder>() {
 
 
-//    private var favBtnListeber:imagrAdaptor.FavButtonClickListener?=null
-//
-//    interface FavButtonClickListener{
-//        fun onFavButtonClick(item:Hit)
-//    }
-//    fun setOnFavClickListener(listener: FavButtonClickListener){
-//        favBtnListeber=listener
-//    }
 
     inner class MyHolder(private val binding: ImagelayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Hitwithfav) {
             Picasso.get().load(item.hit.largeImageURL).into(binding.imageView)
-//
-//            binding.favouriteBtn.setOnClickListener {
-//                favBtnListeber?.onFavButtonClick(item)
-//            }
 
 
             // Set a click listener for the favorite icon

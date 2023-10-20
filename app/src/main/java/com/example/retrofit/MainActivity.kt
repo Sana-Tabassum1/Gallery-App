@@ -35,13 +35,6 @@ class MainActivity : AppCompatActivity() {
         // Initialize the loader
         loader = binding.loader
 
-//        val loaderIntent = Intent(this@MainActivity,R.layout.loader::class.java)
-//        startActivity(loaderIntent)
-//
-//        // In your LoaderActivity after the background task is complete
-//        val resultIntent = Intent()
-//        setResult(Activity.RESULT_OK, resultIntent)
-//        finish()
 
         val repository = (application as quoteApplication).retroRepository
 
@@ -72,8 +65,7 @@ class MainActivity : AppCompatActivity() {
             binding.food
         )
 
-        // Initialize the first category as selected
-//        categoryViews[0].setTextColor(resources.getColor(R.color.black))
+
 
         categoryViews.forEach { categoryView ->
             categoryView.setOnClickListener {
@@ -108,20 +100,7 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
 
-//        mainViewModel.picRetro.observe(this, Observer {
-//            val adaptor=imagrAdaptor()
-//            recyclerView.adapter=adaptor
-//
-////            adaptor.setOnFavClickListener(object: imagrAdaptor.FavButtonClickListener{
-////                override fun onFavButtonClick(item: Hit) {
-////                    mainViewModel.insert(item)
-////                }
-////
-////            })
-//
-//           //Log.d("datapppppp",it.hits.toString())
-//            //Toast.makeText(this,it.hits.toString(),Toast.LENGTH_SHORT).show()
-//        })
+
 
         binding.btnFav.setOnClickListener {
             startActivity(Intent(this@MainActivity, favoritesActivity::class.java))
