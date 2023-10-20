@@ -91,6 +91,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
         mainViewModel.images.observe(this) { imageList ->
             Log.d("MYCODELOG", imageList.toString())
             val hitsWithFavorites = imageList.hits.map { hit: Hit ->

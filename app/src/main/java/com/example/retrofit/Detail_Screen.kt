@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.retrofit.databinding.ActivityDetailScreenBinding
 import com.example.retrofit.databinding.ActivityFavoritesBinding
 import com.example.retrofit.model.Hitwithfav
+import com.squareup.picasso.Picasso
 
 class Detail_Screen : AppCompatActivity() {
     private lateinit var binding: ActivityDetailScreenBinding
@@ -17,6 +18,8 @@ class Detail_Screen : AppCompatActivity() {
         val hit=intent.getSerializableExtra("Hit") as Hitwithfav
 //        hit.hit.likes.toString()
 //        binding.tv.text=
+//        binding.detailsImageView.setImageResource(hit.hit.largeImageURL)
+        Picasso.get().load(hit.hit.largeImageURL).into(binding.detailsImageView)
         binding.downloadsTextView.text="Downloads ${hit.hit.downloads}"
         binding.tagsTextView.text="${hit.hit.tags}"
         binding.typesTextView.text="${hit.hit.type}"
